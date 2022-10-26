@@ -10,9 +10,9 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 
-dotenv.config({ path: ".env" });
+dotenv.config({ path: "./config/config.env" });
 
-Connection("user", "kashif");
+Connection();
 const port = process.env.PORT || 5000;
 
 App.listen(port, () => {

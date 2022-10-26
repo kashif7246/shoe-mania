@@ -12,8 +12,8 @@ app.use(cookieParser());
 import product from "./routes/productRoute.js";
 import User from "./routes/userRoute.js";
 
-app.use("/api/v1", product);
-app.use("/api/v1", User);
+app.use("/api", product);
+app.use("/api/user", User);
 
 //middle ware for error
 
