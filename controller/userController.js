@@ -8,9 +8,9 @@ import sendEmail from "../utilis/sendEmail.js";
 import crypto from "crypto";
 import ErrorHandler from "../utilis/errorHandler.js";
 
-export const registerUser = catchasyncError(async (req, res, next) => {});
 export const registerUsers = asyncError(async (req, res) => {
   const { name, email, password } = req.body;
+  console.log(req.body,'//////')
   const user = await User.create({
     name,
     email,

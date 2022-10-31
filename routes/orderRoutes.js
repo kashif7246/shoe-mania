@@ -9,7 +9,7 @@ import {
 const router = express.Router();
 import isAuthenticated, { authorizeRoles } from "../middleWare/auth.js";
 
-
+ 
 router.route("/order/new").post(isAuthenticated,createOrder)
 router.route("/orders/me").get(isAuthenticated,myOrders);
 router.route("/order/:id").get(isAuthenticated,getSingleOrder)
