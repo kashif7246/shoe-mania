@@ -11,11 +11,13 @@ import {
 } from "../controller/productController.js";
 import isAuthenticated, { authorizeRoles } from "../middleWare/auth.js";
 const router = express.Router();
-
 router.route("/products").get(getAllProducts);
-router.route('/product/:id').get(productDetails);
-router.route('/review').put(isAuthenticated,createProductReview)
-router.route('/reviews').get(getProductReviews).delete(isAuthenticated,deleteReview)
+router.route("/product/:id").get(productDetails);
+router.route("/review").put(isAuthenticated, createProductReview);
+router
+  .route("/reviews")
+  .get(getProductReviews)
+  .delete(isAuthenticated, deleteReview);
 
 router
   .route("/admin/products/new")
@@ -26,6 +28,5 @@ router
 router
   .route("/admin/products/:id")
   .delete(isAuthenticated, authorizeRoles("admin"), deleteProduct);
-
 
 export default router;
