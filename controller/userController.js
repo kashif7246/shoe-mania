@@ -157,7 +157,7 @@ export const updatePassword= catchasyncError(async(req,res,next)=>{
 
   const user = await User.findById(req.user.id).select("+password");
 
-  const ispasswordmatched = await user.comparePassword(req.body.oldPassword);
+  const ispasswordmatched = await user.comparePassword(req.body.currentPassword);
   if(!ispasswordmatched){
     return next(new ErrorHandler("old Password is incorrect",401));
   }
@@ -171,12 +171,6 @@ export const updatePassword= catchasyncError(async(req,res,next)=>{
   await user.save();
   sendToken(user,200,res)
 
-
-
-  res.status(200).json({
-    success:true,
-    user,
-  })
 });
 
 

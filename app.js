@@ -2,6 +2,7 @@ import express, { application } from "express";
 import middleWare from "./middleWare/error.js";
 import cookieParser from "cookie-parser";
 
+
 const app = express();
 
 //Route imports
@@ -17,8 +18,10 @@ app.use("/api", product);
 app.use("/api", User);
 app.use("/api",Order)
 
-//middle ware for error
+app.use(express.static('PRODUCT_FILES'))
+// app.use("PRODUCT_FILES",express.static("PRODUCT_FILES"))
 
+//middle ware for error
 app.use(middleWare);
 
 export default app;

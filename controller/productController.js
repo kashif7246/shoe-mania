@@ -6,8 +6,35 @@ import ApiFeature from "../utilis/apiFeatures.js";
 //Create Products
 export const createProduct = asyncError(async (req, res, next) => {
   req.body.user = req.user.id;
+  const {image} = req.files
+  console.log(image)
+  if(image.length > 0){
+    req.body.images = image.map((img,index)=>(
+      {
+      path:`${process.env.API}/${img.filename}`
+    }));
+  }
+  console.log(req.body.images)
+  // const files=[]
+  // const names= req.files.image.forEach(value=> {
+  //   files.push(value.filename)
+  // })
 
-  const product = await Product.create(req.body);
+  
+  const product = await Product.create(req.body)
+
+//   {
+//     name: req.body.name,
+//     description: req.body.name,
+//     price: req.body.price,
+//     images: [files],
+//     category: req.body.category,
+//     stock: req.body.stock,
+//     numOfReviews: 0,
+//     reviews: [],
+//     user:req.user.id,
+//     ratings: "0"
+// }
 
   res.status(201).json({
     success: true,
@@ -17,7 +44,7 @@ export const createProduct = asyncError(async (req, res, next) => {
 
 //Get All Products
 export const getAllProducts = asyncError(async (req, res) => {
-  const resultPerPage = 5;
+  const resultPerPage = 20;
 
   const productCount = await Product.countDocuments();
 
@@ -29,6 +56,15 @@ export const getAllProducts = asyncError(async (req, res) => {
   const product = await apiFeature.query;
   res.status(200).json({ success: true, product, productCount });
 });
+
+//Get All Products(Admin)
+export const getAdminProducts = asyncError(async (req, res) => {
+  
+ const products = await Product.find()
+
+  res.status(200).json({ success: true, products});
+});
+
 
 //update product
 export const updateProduct = asyncError(async (req, res) => {
