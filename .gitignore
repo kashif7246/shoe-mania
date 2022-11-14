@@ -1,0 +1,24 @@
+
+# dependencies
+/node_modules
+/shoe_minnia_frontend/node_modules
+/shoe_minnia_frontend/.pnp
+/shoe_minnia_frontend/.pnp.js
+
+# testing
+/shoe_minnia_frontend/coverage
+
+# production
+/shoe_minnia_frontend/build
+
+# misc
+/backend/config/config.env
+/shoe_minnia_frontend/.DS_Store
+/shoe_minnia_frontend/.env.local
+/shoe_minnia_frontend/.env.development.local
+/shoe_minnia_frontend/.env.test.local
+/shoe_minnia_frontend/.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
